@@ -1,0 +1,96 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <div id="page">
+            <%- include ('components/footBar') %>
+            <%- include ('components/headBar') %>
+                <div class="page-content header-clear-small">
+                    <div class="card card-style mt-5 mb-0">
+                        <div class="content mx-0 my-0">
+                            <div class="card-bottom text-center mb-0">
+                                <h1 class="color-white font-700 mb-n1">מערכת לניהול קופות</h1>
+                                <p class="color-white opacity-80 mb-4">כל מה שצריך לניהול תזרים</p>
+                            </div>
+                            <img class="img-fluid" src="images/pictures/34sm.jpg" />
+                        </div>
+                    </div>
+                  
+                    <a href="/events">
+                        <div class="card card-style mb-3 mt-3">
+                            <div class="d-flex">
+                                <div class="ps-3 ms-2 align-self-center">
+                                    <h1 class="pt-4 font-22">אירועים</h1>
+                                    <p class="font-11 opacity-50 mt-n2 mb-4">ניהול הפקדות ומשיכות</p>
+                                </div>
+                                <div class="ms-auto me-4 align-self-center">
+                                    <i class="fa fa-shopping-bag color-brown-dark fa-3x mt-4 mb-4 me-1 opacity-50"></i>
+                                    <strong class="badge gradient-blue color-white d-inline position-absolute mt-5 ms-n2 font-10"><%= user.Stat.events %></strong>
+                                    <strong class="badge bg-red-dark color-white d-inline position-absolute mt-5 ms-n4-5 font-10"><%= user.Stat.opened %></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/desks">
+                        <div class="card card-style mb-3">
+                            <div class="d-flex">
+                                <div class="ps-3 ms-2 align-self-center">
+                                    <h1 class="pt-4 font-22">קופות</h1>
+                                    <p class="font-11 opacity-50 mt-n2 mb-4">יצירה ועידכון קופות</p>
+                                </div>
+                                <div class="ms-auto me-4 align-self-center">
+                                    <i class="fa fa-ils color-highlight fa-3x mt-4 mb-4 me-1 opacity-50"></i>
+                                    <strong
+                                        class="badge gradient-blue color-white d-inline position-absolute mt-5 ms-n3 font-10"><%= user.Stat.desks %></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/workers">
+                        <div class="card card-style mb-3">
+                            <div class="d-flex">
+                                <div class="ps-3 ms-2 align-self-center">
+                                    <h1 class="pt-4 font-22">עובדים</h1>
+                                    <p class="font-11 opacity-50 mt-n2 mb-4">הוספה וניהול עובדים</p>
+                                </div>
+                                <div class="ms-auto me-4 align-self-center">
+                                    <i class="fa fa-user color-green-dark fa-3x mt-4 mb-4 me-1 opacity-50"></i>
+                                    <strong
+                                        class="badge gradient-blue color-white d-inline position-absolute mt-5 ms-n3 font-10"><%= user.Stat.workers %></strong> 
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="text-center">
+                        <div class="row mx-auto mt-4 mb-0" style="max-width:140px;">                          
+                            <div class="col-6">
+                                <span onclick="location.href='mailto:alex@vir-tec.net'" target="blank" class="icon icon-xxxs bg-twitter rounded-xl mb-2"><i
+                                        class="fa fa-envelope fa-4"></i></span>
+                            </div>
+                            <div class="col-6">
+                                <span onclick="location.href='tel:054-5468921'" class="icon icon-xxxs bg-highlight rounded-xl mb-2"><i
+                                        class="fa fa-phone fa-4"></i></span>                               
+                            </div>
+                        </div>
+    
+                        <p class="opacity-60 font-10">כל הזכויות שמורות לחברת וירטק בע"מ <span id="copyright-year"></span>&copy;</p>
+                    </div>
+
+                </div>
+
+                
+                <!-- End of Page Content-->
+
+        </div>
+
+        <div id="menu-temp-page" class="menu menu-box-top menu-box-detached rounded-m">
+            <div class="content">
+                <div>
+                    <h1>דף זמני</h1>
+                </div>
+                <div class="text-center min-h-100"><i class="fa fa-address-card fa-7x" aria-hidden="true"></i></div>
+                <a href="#"
+                    class="close-menu btn btn-full btn-m rounded-m bg-green-dark font-700 text-uppercase mb-4">סגור</a>
+            </div>
+        </div>
+        <%- include('voiceRecorder') %>
+        <%- include('components/foot') %>

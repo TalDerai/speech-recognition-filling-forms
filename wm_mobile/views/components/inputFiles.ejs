@@ -1,0 +1,14 @@
+<div class="row text-center mb-3 d-flex justify-content-center">
+    <div class="col-6 mt-2">
+        <button type="button" onclick="chooseFile()"
+            class="btn btn-info text-uppercase font-700 btn-full rounded-sm shadow-xl col-12 text-white py-4">הוספת
+            קובץ</button>
+        <input type="file" id="wFileInput" name="wFileInput" oninput="setFile()" class="d-none"/>
+    </div>
+   <!--  <div id="fileList" class="ltr min-h-100">  
+        
+    </div> -->
+</div>
+<section id="sFileList">
+<%- fileList %> 
+</section>

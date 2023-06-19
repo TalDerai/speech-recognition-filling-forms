@@ -1,0 +1,61 @@
+<div id="footer-bar" class="footer-bar-1">
+
+    <% bLinks.forEach(l=>{%>
+        <% if(l.link==='/' +page){ %>
+            <a href="<%=l.link%>" data-menu="<%= l.dataMenu %>" class="active-nav"><i class="<%=l.icon%>"></i><span>
+                    <%=l.label%>
+                </span></a>
+            <% } else if(l.dataMenu==='menu-search' ) {%>
+                <a href="<%=l.link%>" data-menu="<%= l.dataMenu %>" onclick="$('#inpSearch').focus()"><i
+                        class="<%=l.icon%>"></i><span>
+                        <%=l.label%>
+                    </span></a>
+                <% } else if(l.dataMenu==='menu-sound' ) {%>
+                    <a href="<%=l.link%>" class="sound-rec" title="לחץ והחזק לקלט קולי"><i class="<%=l.icon%>"></i><span><%=l.label%></span></a>
+                    <% } else {%>
+                        <a href="<%=l.link%>" data-menu="<%= l.dataMenu %>"><i class="<%=l.icon%>"></i><span>
+                                <%=l.label%>
+                            </span></a>
+                        <% }%>
+                            <%})%>
+</div>
+
+<form onsubmit="searchByTypeAndKey()">
+    <div id="menu-search" class="menu menu-box-modal menu-box-detached rounded-m">
+        <div class="content">
+            <div id="tab-group-2">
+                <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-blue-dark" id="divSearchTabs">
+                    <a href="#" data-tp="events" onclick="$('#inpSearch').focus()" <% if(page !=='desks' && page
+                        !=='workers' ){ %>data-active<%}%>
+                            data-bs-toggle="collapse">אירועים</a>
+                    <a href="#" data-tp="desks" onclick="$('#inpSearch').focus()" <% if(page==='desks' ){ %>data-active
+                        <%}%>
+                            data-bs-toggle="collapse">קופות</a>
+                    <a href="#" data-tp="workers" onclick="$('#inpSearch').focus()" <% if(page==='workers' ){
+                        %>data-active<%}%>
+                            data-bs-toggle="collapse">עובדים</a>
+                </div>
+                <div class="clearfix mb-3"></div>
+            </div>
+            <div class="input-style has-borders no-icon validate-field mb-4 input-style-active">
+                <input type="name" class="form-control validate-name" id="inpSearch" placeholder="" />
+                <label for="form1" class="color-blue-dark font-600 text-uppercase">חפש לפי</label>
+                <i class="fa fa-times disabled invalid color-red-dark"></i>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <!--  <em>(optional)</em> -->
+            </div>
+            <!-- <div class="text-center font-18 color-highlight pb-3" >חלון זמני</div> -->
+            <!-- <a href="#" class="close-menu btn btn-full font-16 rounded-m bg-green-dark font-700 text-uppercase mb-4" onclick="searchByTypeAndKey()">חפש</a> -->
+            <button type="submit"
+                class="close-menu btn btn-full font-16 rounded-m bg-green-dark font-700 text-uppercase mb-4 btn-f">חפש</button>
+        </div>
+    </div>
+</form>
+
+<!-- TBD -->
+<div class="ad-300x50 ad-300x50-fixed bg-highlight mb-2 rounded-s div-rec d-none">
+    <h6 class="color-white text-center pt-3 font-15 font-700">בתהליך הקלטה ...</h6>
+</div>
+<div class="ad-300x50 ad-300x50-fixed bg-blue-dark mb-2 rounded-s div-proc d-none">
+    <h6 class="color-white text-center pt-3 font-15 font-700"><i class="fa fa-sync fa-spin me-3"></i>חכה רגע ...</h6>
+</div>

@@ -1,0 +1,95 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <div id="page">
+            <%- include ('components/footBar') %>
+                <%- include ('components/headBar') %>
+
+                    <div class="card card-style mt-6">
+                        <div class="content mb-4 mx-4">
+                            <h4 class="font-600">מחולל דוחות</h4>
+                            <div class="row mb-0">
+                                <div class="col-12">
+                                    סוג הדוח
+                                </div>
+                            </div>
+                            <div class="row mb-0" id="repTypes">
+                                <div class="col-6">
+                                    <button type="button" onclick="setRepType(this)" data-id="0"
+                                        class="btn btn-full font-16 rounded-sm bg-blue-dark font-700 mb-4 btn-f">כרטסת
+                                        קופה</button>
+                                </div>
+                                <div class="col-6 ps-1">
+                                    <button type="button" onclick="setRepType(this)" data-id="1"
+                                        class="btn btn-full font-16 rounded-sm border-blue-dark color-blue-dark font-700 mb-4 btn-f">מאזן
+                                        תנועות</button>
+                                </div>
+                            </div>
+                            <section id="secDeskChoice">
+                                <div class="row mb-0">
+                                    <div class="col-12">
+                                        שם הקופה
+                                    </div>
+                                </div>
+
+                                <%- include ('components/deskChoice') %>
+                            </section>
+                            <div class="row mb-0">
+                                <div class="col-12">
+                                    תקופה
+                                </div>
+                            </div>
+                            <section id="secPeriodChoice">
+                                <div class="row mb-0">
+                                    <div class="col-6">
+                                        <button type="button" onclick="setRepPeriod(this)"
+                                            data-id="<%= periods['month'] %>" data-p="month"
+                                            class="btn btn-full font-16 rounded-sm border-blue-dark color-blue-dark font-700 mb-3 btn-f">חודש
+                                            נוכחי</button>
+                                        <button type="button" onclick="setRepPeriod(this)"
+                                            data-id="<%= periods['year'] %>" data-p="year"
+                                            class="btn btn-full font-16 rounded-sm border-blue-dark color-blue-dark font-700 mb-4 btn-f">שנה
+                                            נוכחית</button>
+                                    </div>
+                                    <div class="col-6 ps-1">
+                                        <button type="button" onclick="setRepPeriod(this)"
+                                            data-id="<%= periods['quarter'] %>" data-p="quarter"
+                                            class="btn btn-full font-16 rounded-sm bg-blue-dark font-700 mb-3 btn-f">רבעון
+                                            נוכחי</button>
+                                        <button type="button" onclick="setRepPeriod(this)"
+                                            data-id="<%= periods['all'] %>"  data-p="all"
+                                            class="btn btn-full font-16 rounded-sm border-blue-dark color-blue-dark font-700 mb-4 btn-f">כל
+                                            התאריכים</button>
+                                    </div>
+                                    <input type="hidden" value="<%= selectedDesk %>" id="inpRepDesk"/>
+                                    <input type="hidden" value="<%= periods['quarter'] %>" id="inpRepFromDate"/>
+                                    <input type="hidden" value="<%= periods['to'] %>" id="inpRepToDate"/>                                    
+                                </div>
+                            </section>
+                            <button type="button" onclick="createReport()"
+                                class="btn btn-full font-16 rounded-sm bg-red-dark font-700 my-4 btn-f">יצירת
+                                דוח</button>
+                        </div>
+                    </div>
+
+                    <div id="menu-desk-switch-rep" class="menu menu-box-modal menu-box-detached rounded-m"
+                        data-menu-height="320" data-menu-effect="menu-over">
+                        <div class="list-group list-custom-small ps-1 pe-3">
+                            <% desks.forEach(d=>{ %>
+                                <a href="#" onclick="setRepDesk(this)" data-id="<%=d.Id%>" class="close-menu">
+                                    <% if(selectedDesk==d.Id){ %>
+                                        <i class="font-18 fa fa-circle color-red-light"></i>
+                                        <% }else{ %>
+                                            <i class="font-18 fa fa-circle color-gray-dark"></i>
+                                            <% } %>
+                                                <span class="font-13">
+                                                    <%= d.Name %>
+                                                </span>
+                                </a>
+                                <% }) %>
+                        </div>
+                    </div>
+        </div>
+
+
+        <%- include('voiceRecorder') %>
+            <%- include('components/foot') %>

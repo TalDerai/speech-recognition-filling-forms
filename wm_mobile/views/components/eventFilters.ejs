@@ -1,0 +1,85 @@
+<div class="card card-style mt-6 mb-0">
+    <div class="content mb-0 mt-0">
+        <div class="my-0">
+            <div class="list-group list-custom-small">
+                <a href='#' data-menu="menu-category-switch">
+                    <i class="fa fa-calendar color-blue-dark font-18"></i>
+                    <span class="text-primary font-18"><%= types.find((c)=>c.value===(selectedType ?? 'opened')).label %></span>
+                    <i class="fa fa-arrow-down fa-lg font-18"></i></a>
+            </div>
+        </div>
+        <div class="my-0">
+            <div class="list-group list-custom-small">
+                <a href="#" data-menu="menu-desk-switch">
+                    <i class="fa fa-ils color-blue-dark font-18"></i>
+                    <span class="text-primary font-18">
+                        <%= selectedDesk==0 ? 'כל הקופות' : desks.find(d=>d.Id==selectedDesk).Name %>
+                    </span>
+                    <i class="fa fa-arrow-down fa-lg font-18"></i></a>
+            </div>
+        </div>
+        <div class="my-0">
+            <div class="list-group list-custom-small">
+                <a href="#" data-menu="menu-worker-switch">
+                    <i class="fa fa-user color-blue-dark font-18"></i>
+                    <span class="text-primary font-18">                        
+                        <%= selectedWorker==0 ? 'כל העובדים' : workers.find(d=>d.Id==selectedWorker).Name1 %>
+                    </span>
+                    <i class="fa fa-arrow-down fa-lg font-18"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="menu-category-switch" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="320" data-menu-effect="menu-over">
+    <div class="list-group list-custom-small ps-1 pe-3">
+        <% types.forEach(d=>{ %>
+            <a href="/events?type=<%=d.value%>">
+                <% if(selectedType===d.value){ %>
+                    <i class="font-18 fa fa-circle color-red-light"></i>
+                    <% }else{ %>
+                        <i class="font-18 fa fa-circle color-teal-light"></i>
+                        <% } %>                                        
+                <span class="font-18">
+                    <%= d.label %>
+                </span>
+            </a>
+            <% }) %>
+    </div>
+</div>
+
+<div id="menu-desk-switch" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="305"
+    data-menu-effect="menu-over">
+    <div class="list-group list-custom-small ps-1 pe-3">
+        <% desks.forEach(d=>{ %>
+            <a href="/events?desk=<%=d.Id%>">
+                <% if(selectedDesk==d.Id){ %>
+                    <i class="font-18 fa fa-circle color-red-light"></i>
+                    <% }else{ %>
+                        <i class="font-18 fa fa-circle color-gray-dark"></i>
+                        <% } %>
+                            <span class="font-18">
+                                <%= d.Name %>
+                            </span>
+            </a>
+            <% }) %>
+    </div>
+</div>
+
+<div id="menu-worker-switch" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="305"
+    data-menu-effect="menu-over">
+    <div class="list-group list-custom-small ps-1 pe-3">
+        <% workers.forEach(d=>{ %>
+            <a href="/events?worker=<%=d.Id%>">
+                <% if(selectedWorker==d.Id){ %>
+                    <i class="font-18 fa fa-circle color-red-light"></i>
+                    <% }else{ %>
+                        <i class="font-18 fa fa-circle color-gray-dark"></i>
+                        <% } %>
+                            <span class="font-18">
+                                <%= d.Name1 %>
+                            </span>
+            </a>
+            <% }) %>
+    </div>
+</div>

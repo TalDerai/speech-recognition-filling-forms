@@ -1,0 +1,130 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <script>const isTest = true</script>
+        <div id="page" style="width:1000px;margin:20px auto">
+            <div class="row">
+                <div class="col-7">
+                    <audio></audio>
+                    <!-- Nlp -->
+                    <script src="https://unpkg.com/compromise@11.14.3/builds/compromise.min.js"></script>
+
+                    <!-- Socket -->
+                    <script src="voice/socket.io.js"></script>
+
+                    <!-- Client -->
+                    <script src="voice/voiceManager.js"></script>
+
+                    <script>
+                        $(() => {
+                            $('#btnRecorder').on('click', () => {
+                                setMode(voiceManager.isRunning)
+                                if (voiceManager.isRunning) {
+                                    voiceManager.stopRecording()
+                                } else {
+                                    clearTestVoiceResults()
+                                    voiceManager.startRecording()
+                                }
+                            })
+                        })
+
+                        const setMode = (isRunnning) => {
+                            if (isRunnning) {
+                                $('#btnRecorder').removeClass('btn-danger').addClass('btn-primary').find('span').text('להתחיל הקלטה')
+                                $('#btnRecorder').find('i').removeClass('fa-sync fa-spin').addClass('fa-microphone')
+                            } else {
+                                $('#btnRecorder').removeClass('btn-primary').addClass('btn-danger').find('span').text('להפסיק הקלטה')
+                                $('#btnRecorder').find('i').removeClass('fa-microphone').addClass('fa-sync fa-spin')
+                            }
+                        }
+
+                        const callbackData = (d) => {
+                            fillTempResults(d)
+                        }
+
+                        const callbackFinal = (d) => {
+                            console.log(2, d)
+                            setMode(true)
+                            voiceManager.stopRecording()
+                            fillTempResults(d)
+                            fillTestVoiceResults(d.actions)
+                        }
+
+                        const voiceManager = new VoiceManager(window, callbackData, callbackFinal)
+
+                        const fillTempResults = (d) =>{
+                            if (d.results && d.results[0] && d.results[0].alternatives && d.results[0].alternatives[0].transcript !== '') {
+                                $('#taTranscript').val(d.results[0].alternatives[0].transcript)
+                            }
+                        }
+
+                        const fillTestVoiceResults = (act) => {                            
+                            if (act[0] && act[0].sim > 0.8) {
+                                runExeTest(act[0].path)
+                            }
+                            let s = act.map(a => {
+                                return `<div class="card mb-3"><div class="card-body py-0 ">                   
+                                            <p class="card-text mb-0">${a.key}</p>
+                                            <div class="ltr">sim: <b>${a.sim.toFixed(2)}</b></div>
+                                            <div class="ltr">action: <a href="#" class="card-link" onclick="runExeTest('${a.path}')">${a.path}</a></div>
+                                        </div></div>`}).join('')
+
+                            s = `<b>תוצאות זיהוי</b>${s}<div class="text-center">
+                                        <button class="btn btn-danger" onclick="clearTestVoiceResults()">לנקות</button></div>`
+                            $('#voiceRecResults').html(s)
+                        }
+
+                        const clearTestVoiceResults = () => {
+                            $("#taTranscript").val('')
+                            $('#voiceRecResults').html('')
+                        }
+
+                        const runExeTest = async (action) => {
+                            if (action && action !== 'na') {
+                                if (action.indexOf('/reports/') > -1) {
+                                    const url = `https://kupaktana.com${action}`
+                                    window.open(url, '_blank')
+                                } else {
+                                    $('#myFrame').attr('src', action)
+                                }
+                            }
+                        }
+                    </script>
+                    <div class="holder text-center">
+                        <div data-role="controls">
+                            <button class="btn mt-3 font-24 rounded-m btn-primary" id="btnRecorder"
+                                style="min-width:220px">
+                                <span id="btnTest">התחל להקליט</span>&nbsp;&nbsp;<i
+                                    class="fa fa-microphone"></i></button>
+                        </div>
+                    </div>
+                    <div class="row mb-0">
+                        <div class="col-10 a-pl-0">
+                            <div class="px-3 pt-3 transcript-div">
+                                <b>תמלול</b>
+                            </div>
+                            <div class="input-group mb-3 px-3 ltr">
+                                <!--<button class="btn btn-secondary" type="button" id="button-addon2"
+                                    onclick="recognize()">לזהות</button> -->
+                                <input id="taTranscript" type="text" class="form-control rtl"
+                                    aria-describedby="button-addon2"/>
+                            </div>
+                        </div>
+                        <div class="col-2 a-pr-0">
+                            <div class="px-3 pt-3 transcript-div">
+                                <b>לימית</b>
+                            </div>
+                            <div class="mb-3 px-3 ltr">                                
+                                <input id="inpLimit" type="number" class="form-control" value="0.7"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="px-3 py-3 " id="voiceRecResults"></div>
+                </div>
+                <div class="col-5" style="background-color:white;border:4px solid white">
+                    <iframe id="myFrame" src="/" style="min-height:800px;width:100%"></iframe>
+                </div>
+            </div>
+        </div>
+        <%- include('components/foot') %>

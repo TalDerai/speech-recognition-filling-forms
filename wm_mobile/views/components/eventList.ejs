@@ -1,0 +1,26 @@
+<div class="page-content header-clear-small mt-0 mb-3">
+    <% 
+    if(events.length>0){
+    events.forEach(e=>{ %>
+        <a href="/eventCard?id=<%= e.Id %>" data-menu="menu-event-card-form">
+            <div class="card card-style mb-3">
+                <div class="d-flex">
+                    <div class="ps-3 ms-2 align-self-center">
+                        <i class="<%= eventIcon(e) %>"></i>
+                    </div>
+                    <div class="ps-3 ms-2 align-self-center">
+                        <h4 class="pt-2 pb-1 font-20"><%= e.Description %></h1>
+                        <p class="font-12 opacity-75 mt-n1 mb-1 sub-title">
+                            <%- eventSummary(e) %>
+                        </p>
+                    </div>                    
+                    <div class="ms-auto me-4 align-self-center">
+                        <i class="fa fa-angle-left"></i>                       
+                    </div>
+                </div>
+            </div>
+        </a>
+    <% }) } else {%>
+        <div class="text-center text-danger mx-3" >אין אירועים מתאימים לפרמטרים של סינון</div>
+    <% } %>
+</div>

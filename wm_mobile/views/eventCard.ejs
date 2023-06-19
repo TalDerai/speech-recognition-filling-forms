@@ -1,0 +1,88 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <div id="page">
+            <%- include ('components/footBar') %>
+                <%- include ('components/headBar') %>
+                    <div class="page-content header-clear-small mt-5 mb-3 mx-2">
+                        <form action="/eventCard" method="post">
+                            <div class="content" id="tab-group">
+                                <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-blue-dark">
+                                    <a href="#" data-active data-bs-toggle="collapse" data-bs-target="#tab1">פירטי
+                                        אירוע</a>
+                                    <% if(!isDep){ %>
+                                        <a href="#" data-bs-toggle="collapse" data-bs-target="#tab2">סגירת אירוע</a>
+                                        <% } %>
+                                            <a href="#" data-bs-toggle="collapse" data-bs-target="#tab3">קבצים</a>
+                                </div>
+                                <div class="clearfix mb-3"></div>
+                                <div data-bs-parent="#tab-group" class="collapse show" id="tab1">
+                                    <%- form[0] %>
+                                </div>
+                                <% if(!isDep){ %>
+                                    <div data-bs-parent="#tab-group" class="collapse" id="tab2">
+                                        <%- form[1] %>
+                                    </div>
+                                    <% } %>
+                                        <div data-bs-parent="#tab-group" class="collapse min-h-200" id="tab3">
+                                            <%- include('components/inputFiles') %>
+                                        </div>
+                            </div>
+                            <% if(!isDep && id>0){ %>
+                                <div class="row mb-0 mx-1">
+                                    <div class="col-4"><button type="submit"
+                                            class="btn form-control font-14 rounded-sm bg-green-dark">שמור</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#" type="button" data-menu="menu-close" 
+                                            class="btn form-control font-14 rounded-sm bg-blue-light">סגור
+                                            אירוע</a>
+                                    </div>
+                                    <div class="col-4"><button type="button" onclick="history.back()"
+                                            class="btn form-control font-14 rounded-sm bg-red-light">סגור</button>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                    <div class="row mb-0 mx-1">
+                                        <div class="col-6"><button type="submit"
+                                                class="btn form-control font-700 rounded-sm bg-green-dark">שמור</button>
+                                        </div>                                        
+                                        <div class="col-6"><button type="button" onclick="history.back()"
+                                                class="btn form-control font-700 rounded-sm bg-red-light">סגור</button>
+                                        </div>
+                                    </div>
+                                <% } %>
+                        </form>
+                    </div>
+        </div>
+        <% if(message!='' ){ %>
+            <div class="menu menu-box-modal menu-box-detached rounded-m menu-active m-a-sp" id="msg">
+                <div class="content text-center">
+                    <% if(message.tp==='success' ) { %>
+                        <i class="fa fa-check-circle scale-box color-green-dark fa-5x pb-3 pt-3"></i>
+                        <% }else{ %>
+                            <i class="fa fa-exclamation-circle scale-box color-red-dark fa-5x pb-3 pt-3"></i>
+                            <% } %>
+                                <h2 class="content text-primary mb-1 pb-5">
+                                    <%= message.txt %>
+                                </h2>
+                                <a href="#"
+                                    class="close-menu btn btn-full btn-primary rounded-m font-700 text-uppercase mb-4">סגור</a>
+                </div>
+            </div>
+            <% } %>               
+
+            <div id="menu-close" class="menu menu-box-bottom menu-box-detached rounded-m">
+                <div class="content text-center">       
+                    <h2 class="content mb-1 pb-3">
+                        האירוע תסגר אוטומתי לפי פרטים השמורים
+                    </h2>
+                    <div class="mb-5 font-18 color-highlight" >חלון זמני</div>
+                    <a href="#" class="close-menu btn btn-full form-control rounded-m bg-red-dark font-16 mb-4">סגור
+                        אירוע</a>
+                </div>
+            </div>
+            <%- include('voiceRecorder') %>
+                <%- include('components/foot') %>
+
+
+                

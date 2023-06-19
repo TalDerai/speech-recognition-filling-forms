@@ -1,0 +1,14 @@
+<div class="card card-style mt-6 mb-n<%= type=='events' ? 1 : 5 %>">
+    <div class="content">
+        <% if(amount===0){ %>
+            <h2>לא נמצאו רשימות</h2>
+            <% }else { %>
+                <h2>נמצאו <span class="text-primary">
+                        <%= amount %>
+                    </span> רשימות</h2>
+                <% }%>
+                    <p> חיפוש לפי <span class="color-highlight font-12 mt-n3 pt-1 mb-2">
+                            <%= key %>
+                        </span></p>
+    </div>
+</div>

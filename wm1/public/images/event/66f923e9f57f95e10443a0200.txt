@@ -1,0 +1,17 @@
+************ 15-09-2022 ***********
+basic tasks
+	//- update (event, desk, worker)
+	//- create new (//event, //desk, //worker)
+	//- new GUI concept
+	- add files (event)
+	- search (event, desk, worker)
+	- amounts for home page
+future tasks
+	- google STT - account, project
+	- string similarity
+	- search by (event, desk, worker)
+	- create new (event)
+refactoring
+	- env variables
+	- max to components (ejs)
+	- form generator optimization

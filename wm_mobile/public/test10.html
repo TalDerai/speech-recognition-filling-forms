@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="hidden" name="Id" value="1174" />
+    <div class="form-field form-email text-start">
+        <label class="contactNameField color-theme">סוג האירוע<span></span></label>
+        <input type="text" name="EventType" value="משיכה" class="round-small" disabled="true  placeholder=" סוג
+            האירוע" />
+    </div>
+    <div class="form-field form-email text-start">
+        <label class="contactNameField color-theme">תיאור<span>שדה חובה</span></label>
+        <input type="text" name="Description" value="בדיקה 444" class="round-small" placeholder="תיאור" />
+    </div>
+    <div class="form-field form-email text-start">
+        <label class="contactNameField color-theme">סכום<span>שדה חובה</span></label>
+        <input type="number" name="Amount" value="500" class="round-small" placeholder="סכום" />
+    </div>
+    <div class="form-field form-email text-start">
+        <label class="contactNameField color-theme">תאריך פתיחה<span>שדה חובה</span></label>
+        <input type="date" name="Date" value="2022-08-31" class="round-small" placeholder="תאריך פתיחה" />
+    </div>
+    <div class="form-field form-email text-start">
+        <label class="contactNameField color-theme">עובד<span></span></label>
+        <div class="input-style has-borders no-icon mb-4">
+            <select name="Worker">
+                <option value="default" disabled selected>--- עובד ---</option>
+
+            </select>
+            <span><i class="fa fa-chevron-down"></i></span>
+            <i class="fa fa-check disabled valid color-green-dark"></i>
+            <i class="fa fa-check disabled invalid color-red-dark"></i>
+            <em></em>
+        </div>
+    </div>
+    <div class="form-field form-email text-start">
+        <label class="contactNameField color-theme">קופה<span></span></label>
+        <div class="input-style has-borders no-icon mb-4">
+            <select name="Desk">
+                <option value="default" disabled selected>--- קופה ---</option>
+
+            </select>
+            <span><i class="fa fa-chevron-down"></i></span>
+            <i class="fa fa-check disabled valid color-green-dark"></i>
+            <i class="fa fa-check disabled invalid color-red-dark"></i>
+            <em></em>
+        </div>
+    </div>
+</body>
+
+</html>

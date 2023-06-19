@@ -1,0 +1,28 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <div id="page">
+            <%- include ('components/footBar') %>
+                <%- include ('components/headBar') %>
+                    <div class="page-content header-clear-small mt-5 mb-3 mx-4">
+                        <%- form %>
+                    </div>
+
+        </div>
+        <% if(message!='' ){ %>
+            <div class="menu menu-box-modal menu-box-detached rounded-m menu-active m-a-sp" id="msg">
+                <div class="content text-center">
+                    <% if(message.tp==='success' ) { %>
+                        <i class="fa fa-check-circle scale-box color-green-dark fa-5x pb-3 pt-3"></i>
+                        <% }else{ %>
+                            <i class="fa fa-exclamation-circle scale-box color-red-dark fa-5x pb-3 pt-3"></i>
+                            <% } %>
+                                <h2 class="content text-primary mb-1 pb-5">
+                                    <%= message.txt %>
+                                </h2>
+                                <a href="#"
+                                    class="close-menu btn btn-full btn-primary btn-m rounded-m font-700 text-uppercase mb-4">סגור</a>
+                </div>
+            </div>
+            <% } %>
+            <%- include('voiceRecorder') %>
+                <%- include('components/foot') %>

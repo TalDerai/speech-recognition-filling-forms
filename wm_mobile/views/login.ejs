@@ -1,0 +1,58 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <div id="page">
+            <div class="page-content header-clear-small">
+                <div class="card card-style mt-0 mb-0">
+                    <div class="content mx-0 my-0">
+                        <div class="card-bottom text-center mb-0">
+                            <h1 class="color-white font-700 mb-n1">מערכת לניהול קופות</h1>
+                            <p class="color-white opacity-80 mb-4">כל מה שצריך לניהול תזרים</p>
+                        </div>
+                        <img class="img-fluid" src="images/pictures/34.jpg" />
+                    </div>
+                </div>
+                <div class="card card-style my-3 pb-4 pt-2">
+                    <div class="content mb-0 mt-2">
+                        <form action="/login" method="post" class="contactForm" id="contactForm">
+                            <fieldset>
+                                <div class="form-field form-email">
+                                    <label class="color-theme" for="mail">דואר
+                                        אלקטרוני<span>(שדה חובה)</span></label>
+                                    <input type="text" name="mail" value="alex@k.com" class="round-small"
+                                        id="mail" />
+                                </div>
+                                <div class="form-field form-name">
+                                    <label class="color-theme"
+                                        for="password">סיסמה<span>(שדה חובה)</span></label>
+                                    <input type="password" name="password" value="123" class="round-small"
+                                        id="password" />
+                                </div>
+                                <div class="form-button">
+                                    <button type="submit"
+                                        class="btn bg-highlight text-uppercase font-700 btn-full rounded-sm shadow-xl contactSubmitButton"
+                                         data-formId="contactForm">כניסה למערכת</button>
+                                </div>
+                            </fieldset>
+                            <div class="card mt-1 mb-0">
+                                <p class="content text-danger mb-1">
+                                    <%= error %>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="menu-temp-page" class="menu menu-box-top menu-box-detached rounded-m">
+            <div class="content">
+                <div>
+                    <h1>דף זמני</h1>
+                </div>
+                <div class="text-center min-h-100"><i class="fa fa-address-card fa-7x" aria-hidden="true"></i></div>
+                <a href="#"
+                    class="close-menu btn btn-full btn-m rounded-m bg-green-dark font-700 text-uppercase mb-4">סגור</a>
+            </div>
+        </div>
+        <%- include('components/foot') %>

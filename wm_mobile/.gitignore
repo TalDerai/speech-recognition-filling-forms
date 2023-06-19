@@ -1,0 +1,7 @@
+/node_modules
+.env
+ecosystem.config.js
+/utils/common.js
+/.cache
+/public/stt/static/js/main.2ed03d14.chunk.js
+/public/stt/static/js/main.2ed03d14.chunk.js.map

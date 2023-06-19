@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STT Recognition</title>
+    <style>
+        button {
+            color: white;
+            background: blue;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 1em;
+        }
+
+        input {
+            padding: .5em;
+            margin: .5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:500px;margin:20px auto">
+        <p>I’m Aakash1282,<br> Are you lazy, here is voice writer for your</p>
+
+        <p><button type='button' onclick='SpeechRecog()'>Write By Voice</button> &nbsp <span id='action'></span></p>
+
+        <input type='text' id='output' />
+    </div>
+    <script>
+        /* JS comes here */
+        function SpeechRecog() {
+            var output = document.getElementById('output')
+            var action = document.getElementById('action')
+            var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+            var recognition = new SpeechRecognition()
+            recognition.lang = 'he'
+
+            // This runs when the speech recognition service starts
+            recognition.onstart = function () {
+                action.innerHTML = '<small>listening, please speak…</small>'
+            }
+
+            recognition.onspeechend = function () {
+                action.innerHTML = '<small>stopped listening, hope you are done…</small>'
+                recognition.stop()
+            }
+
+            // This runs when the speech recognition service returns result
+            recognition.onresult = function (event) {
+                var transcript = event.results[0][0].transcript
+                var confidence = event.results[0][0].confidence
+                output.value = transcript
+            }
+
+            // start recognition
+            recognition.start()
+        }
+    </script>
+</body>
+
+</html>
