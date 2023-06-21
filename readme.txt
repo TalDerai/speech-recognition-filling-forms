@@ -32,4 +32,6 @@ For website page:
 		npm install
 		npm run dev
 		cd ../
+
+	7. Open in browser: "localhost:7000" and sign in, and use in up right side setting and push "עוזר קולי", enjoy!
 	
