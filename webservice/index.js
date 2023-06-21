@@ -44,7 +44,7 @@ app.post('/stt', async (req, res) => {
         }
         const transcript = await fileToStt(path)
         const arr_algo_similarity = [stringComparison.cosine, stringComparison.lcs, stringComparison.mlcs]
-        const bestCommand = findBestCommand(transcript, arr_algo_similarity[0], commands_arr);
+        const bestCommand = findBestCommand(transcript,commands_arr);
         console.log('Best Command:', bestCommand);
 
         //const actions = finder.find(transcript)
@@ -60,7 +60,7 @@ app.listen(3001, () => console.log('Server started on port 3001'));
 
 
 
-function findBestCommand(transcript, algorithm_similarity = stringComparison.levenshtein, commands_arr) {
+function findBestCommand(transcript, commands_arr, algorithm_similarity = stringComparison.levenshtein) {
   const ls = algorithm_similarity
   let maxSimilarity = 0; 
   let bestCommand = '';

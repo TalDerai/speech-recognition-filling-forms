@@ -545,7 +545,7 @@ app.post('/stt', async (req, res) => {
     }
     const form = new formidable.IncomingForm()
     form.parse(req, async function (err, fields, file) {
-    const api_key = "37d8f081229f25a4a7fd9dad7ab969d802999a90e9b73ae1a15b7dcac08d46fd"
+    const api_key = "6f8a21986f1a19e543300e4f1a030757d746a07b378268a7d053179bb563ebf4"
     const data = {
         file_path: file.file.filepath, //wav file
         api_key: api_key 
