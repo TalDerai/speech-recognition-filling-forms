@@ -1,0 +1,12 @@
+<div class="card mt-0 mb-3 rounded-sm desk-ch">
+    <div class="content my-0">
+        <div class="list-group list-custom-small">
+            <a href="#" data-menu="menu-desk-switch-rep">
+                <i class="fa fa-shopping-bag color-red-dark"></i>
+                <span class="font-700 font-16" id="repDeskName">
+                    <%= selectedDesk===0 ? 'כל הקופות' : desks.find(d=>d.Id===selectedDesk).Name %>
+                </span>
+                <i class="fa fa-angle-left"></i></a>
+        </div>
+    </div>
+</div>

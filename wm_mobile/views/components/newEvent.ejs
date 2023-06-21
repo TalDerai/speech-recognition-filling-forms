@@ -1,0 +1,16 @@
+<div class="row text-center mb-0 mt-6">
+    <% if(id !== 0){%>
+    <a href='/eventCard?id=0&isDep=0<%=newEventParams%>' data-menu="menu-transaction-transfer" class="col-6 pe-0">
+        <div class="card card-style me-2 mb-3">
+            <i class="fa fa-arrow-up color-highlight fa-2x mt-3"></i>
+            <h1 class="pt-2 font-18">משיכה חדשה</h1>           
+        </div>
+    </a>
+    <a href='/eventCard?id=0&isDep=1<%=newEventParams%>' data-menu="menu-transaction-request" class="col-6 ps-0">
+        <div class="card card-style ms-2 mb-3">
+            <i class="fa fa-arrow-down color-green-dark fa-2x mt-3"></i>
+            <h1 class="pt-2 font-18">הפקדה חדשה</h1>
+        </div>
+    </a>
+    <%}%>
+</div>

@@ -1,0 +1,19 @@
+<script>const isTest=false</script>        
+<div id="menu-sound" class="menu menu-box-bottom menu-box-detached rounded-m" onshow="console.log('menu is shown')">
+    <div class="content">       
+        <div class="rec-app">            
+            <%- include ('components/recorder') %>
+            <div id="transcript" class="text-center font-24"></div>
+            <div id="normalized" class="text-center"></div>
+            <div id="action" class="text-center"></div>
+        </div>       
+        <div class="row">
+            <div class="col-6">
+                <a href="#" onclick="window.open('manual.pdf','_blank')" class="btn btn-full font-16 rounded-m btn-info color-white font-700 text-uppercase">תקבל עזרה</a>
+            </div>
+            <div class="col-6">
+                <a href="#" class="close-menu btn btn-full font-16 rounded-m btn-danger font-700 text-uppercase" onclick="clearVoiceResults()">סגור</a>
+            </div>
+        </div>         
+    </div>
+</div>

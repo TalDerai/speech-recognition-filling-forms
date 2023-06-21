@@ -1,0 +1,10 @@
+{
+    "entryFilePath": "public\\extension.ts",
+    "alias":{},
+    "resolveExtensions":[
+        ".js",
+        ".jsx",
+        ".ts",
+        ".css"
+    ]
+}

@@ -1,0 +1,24 @@
+error: Command failed: npx next start -p 3010
+Error: Could not find a production build in the 'C:\projects\wm1-master\.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at NextNodeServer.getBuildId (C:\projects\wm1-master\node_modules\next\dist\server\next-server.js:116:23)
+    at new Server (C:\projects\wm1-master\node_modules\next\dist\server\base-server.js:70:29)
+    at new NextNodeServer (C:\projects\wm1-master\node_modules\next\dist\server\next-server.js:63:9)
+    at NextServer.createServer (C:\projects\wm1-master\node_modules\next\dist\server\next.js:140:16)
+    at async C:\projects\wm1-master\node_modules\next\dist\server\next.js:149:31
+
+error: Command failed: npx next start -p 3010
+Error: Could not find a production build in the 'C:\projects\wm1-master\.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at NextNodeServer.getBuildId (C:\projects\wm1-master\node_modules\next\dist\server\next-server.js:116:23)
+    at new Server (C:\projects\wm1-master\node_modules\next\dist\server\base-server.js:70:29)
+    at new NextNodeServer (C:\projects\wm1-master\node_modules\next\dist\server\next-server.js:63:9)
+    at NextServer.createServer (C:\projects\wm1-master\node_modules\next\dist\server\next.js:140:16)
+    at async C:\projects\wm1-master\node_modules\next\dist\server\next.js:149:31
+
+error: Command failed: npx next start -p 3010
+Error: Could not find a production build in the 'C:\projects\wm1-master\.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at NextNodeServer.getBuildId (C:\projects\wm1-master\node_modules\next\dist\server\next-server.js:116:23)
+    at new Server (C:\projects\wm1-master\node_modules\next\dist\server\base-server.js:70:29)
+    at new NextNodeServer (C:\projects\wm1-master\node_modules\next\dist\server\next-server.js:63:9)
+    at NextServer.createServer (C:\projects\wm1-master\node_modules\next\dist\server\next.js:140:16)
+    at async C:\projects\wm1-master\node_modules\next\dist\server\next.js:149:31
+

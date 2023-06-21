@@ -1,0 +1,21 @@
+npx create-next-app@latest
+npm install sqlite3 --save
+npm install sqlite --save
+
+// for swagger
+npm install -g redoc-cli
+cd swagger
+
+npm i swagger-ui
+ -- https://stackoverflow.com/questions/30400477/how-to-open-local-files-in-swagger-ui
+
+
+npm i mdb-react-ui-kit
+
+
+
+
+///////////////////////////////////////////////////////////////
+// https://dev.to/elisabethleonhardt/implementing-pagination-with-nextjs-mui-and-react-query-2ab
+// https://javascript.plainenglish.io/simple-pagination-in-next-js-using-react-paginate-562830c00279
+// https://codesandbox.io/s/6w3k5yzqmn?file=/pages/index.js:154-453

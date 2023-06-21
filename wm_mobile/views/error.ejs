@@ -1,0 +1,16 @@
+<%- include ('components/head') %>
+<%- include ('components/preloader') %>
+<div id="page">    
+    <%- include ('components/headBar') %>        
+    <div class="card card-style mt-6">
+        <div class="content mb-4">
+            <h4 class="font-600">הודעת שגיאה</h4>
+            <p class="opacity-80">
+                <%=error%>
+            </p>
+        </div>
+    </div>
+
+</div>
+<%- include('voiceRecorder') %>
+<%- include('components/foot') %>

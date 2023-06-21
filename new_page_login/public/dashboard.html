@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>API key and file upload form</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+        max-width: 300px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+}
+
+button[type="button"] {
+  background-color: #ffc107;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+.help-button {
+        margin-top: 10px;
+      }
+
+    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script>
+    function generateAPIKey() {
+      // Generate a random string
+      var randomString = Math.random().toString(36).substring(2);
+      
+      // Compute the SHA-256 hash of the random string
+      var shaHash = CryptoJS.SHA256(randomString).toString();
+
+      document.getElementById("apikey").value = shaHash;
+    }
+
+    function validateForm() {
+        var apiKey = document.getElementById("apikey").value;
+        var file = document.querySelector('input[type="file"]').value;
+
+        if (apiKey === "" || file === "") {
+          alert("Please fill in all fields!");
+          return false;
+        }
+
+        return true;
+      }
+      function showHelp() {
+        var helpfile = "  Please upload txt file with commands that you want us to support:</p><p>each command need to be in different line.</p><p>for example:</p></p> commands.txt:</p><p>תן לי מידע על לקוח ישראל ישראלי</p><p>תציג לי מאזן כספי של ישראל ישראלי</p><p>תציג לי טלויזיה במחיר הכי זול</p><p>";
+        var helpAPI = "<p>  Please generate API-KEY and copy the all key to your program and send it with the wav file in json format.</p>"
+        var example = "<p>For example set this in your code:<p></p><img src='/images/help.png' class='center'></p>"
+        var final = "<p>The transcript variable is the exact command in your dataset commands.</p>"
+        // Create a pop-up window
+        var popupWindow = window.open("", "Help", "width=300,height=200");
+        popupWindow.document.write("<html><head><title>Help</title></head><body><p>" + helpfile + helpAPI + example + final + "</p></body></html>");
+      }
+</script>
+</head>
+<body>
+  <h1>Generate an API key and upload a file</h1>
+  <form action="/dashboard" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <label>API key:</label>
+    <input type="text" id="apikey" name="apikey" readonly>
+    <button type="button" onclick="generateAPIKey()">Generate API Key</button>
+    <br><br>
+    <label>File:</label>
+    <input type="file" name="file"><br>
+    <button type="submit">Submit</button>
+  </form>
+  <button class="help-button" onclick="showHelp()">Help</button>
+</body>
+</html>

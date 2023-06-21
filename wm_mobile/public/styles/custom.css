@@ -1,0 +1,161 @@
+.mt-6 {
+  margin-top: 4.2rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 4.5rem !important;
+}
+
+.min-h-100 {
+  min-height: 100px;
+}
+
+.min-h-200 {
+  min-height: 200px;
+}
+
+.sub-title span {
+  font-weight: normal !important;
+}
+
+.sub-title b {
+  display: inline-block;
+  color: red;
+  margin-right: 3px;
+  margin-left: 6px;
+  direction: ltr;
+}
+
+input {
+  background-color: white !important;
+}
+
+.form-field span {
+  left: 30px;
+  color: red;
+}
+
+.contactNameField {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.form-email input,
+.form-email textarea {
+  background-color: white !important;
+}
+
+.form-email input:disabled {
+  background-color: #f7f7f7 !important;
+}
+
+.form-email textarea {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.menu-active.menu {
+  z-index: 1100;
+}
+
+.m-a-sp {
+  -webkit-box-shadow: 0px 0px 12px 10px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 12px 10px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 0px 12px 10px rgba(0, 0, 0, 0.16);
+}
+
+.max-h-120 {
+  max-height: 200px!important;
+}
+
+#wPicInput{
+  display:none;
+}
+
+label, input, select{
+  font-size: large!important;
+}
+
+input[type="date"]{
+  padding-right: 30px!important; 
+}
+
+.mt-4-5 {
+  margin-top: 2rem !important;
+}
+
+.icon-xxxs i {
+  width: 48px;
+  line-height: 48px;
+  font-size: 18px;
+}
+
+.mt-n45 {
+  margin-top: -2.5rem !important;
+}
+
+.left-30{
+  left:30px!important;
+}
+
+.ltr{
+  direction: ltr !important;
+}
+
+.rtl{
+  direction: rtl !important;
+}
+
+.link-list-ltr{
+  direction: ltr!important;  
+}
+
+.link-list-ltr .r-i {
+  float: right !important;
+  right: 10px!important;
+}
+
+.badge-plus{
+  right: 55px!important;
+}
+
+.badge-plus .badge{
+  padding: 2px 4px 2px 4px!important;
+}
+
+.header-title h1{
+  font-size: 18px!important;
+}
+.ms-n4-5 {
+  margin-right: -1.8rem !important;
+}
+
+.rec-app {
+  min-height:200px!important;
+}
+
+.f-test{
+  min-height:36px;
+  background-color:#f8f9fa;
+}
+.bold{
+  font-weight: bold;
+}
+
+pre{
+  line-height: 1.2em;
+  font-size: 12px;
+}
+.btn-f{
+  width: 100%!important;
+}
+.desk-ch{
+  border: 1px solid #4a89dc!important
+}
+.a-pl-0{
+  padding-left: 0!important;
+}
+.a-pr-0{
+  padding-right: 0!important;
+}

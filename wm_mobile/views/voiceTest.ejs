@@ -1,0 +1,27 @@
+<%- include ('components/head') %>
+    <%- include ('components/preloader') %>
+        <script>const isTest = true</script>
+        <div id="page" style="width:1000px;margin:20px auto">
+            <div class="row">
+                <div class="col-7">
+                    <%- include ('components/recorder') %>
+                        <div class="px-3 pt-3 transcript-div">
+                            <b>תמלול</b> 
+                        </div>
+                        <div class="px-3 pt-3 progress-div"><i class="fa fa-sync fa-spin me-3"></i><b>בתהליך ...</b>
+                        </div>
+                        <div class="input-group mb-3 px-3 ltr">
+                            <button class="btn btn-secondary" type="button" id="button-addon2"
+                                onclick="recognize()">לזהות</button>                            
+                            <input id="taTranscript" type="text" class="form-control rtl"
+                                aria-describedby="button-addon2">
+                        </div>
+
+                        <div class="px-3 py-3 " id="voiceRecResults"></div>
+                </div>
+                <div class="col-5" style="background-color:white;border:4px solid white">
+                    <iframe id="myFrame" src="/" style="min-height:800px;width:100%"></iframe>
+                </div>
+            </div>
+        </div>
+        <%- include('components/foot') %>

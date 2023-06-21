@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="https://unpkg.com/@speechly/browser-ui/core/push-to-talk-button.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@speechly/browser-ui/core/big-transcript.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@speechly/browser-ui/core/error-panel.js"></script>
+</head>
+
+<body>
+    <!-- The configuration for this appid is the following: (more info at https://docs.speechly.com/slu-examples/): 
+       *fill [standard|expedited|priority](shipping) shipping to $SPEECHLY.STREET_ADDRESS(street_address) 
+      -->
+    <big-transcript placement="top"></big-transcript>
+    <push-to-talk-button appid="267ff938-3e03-4dd3-83bb-ac846b882af6" placement="bottom"></push-to-talk-button>
+    <!-- <push-to-talk-button appid="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlY2Y0YTNkZjI2YTE1ZTU0ODI5ZTQ2MzExYmI3ZWI4ZDgxYmY1YjJkZGQ0YTRiMTk5ZjYzOWFmODJlZjJhMWJiYzU0YjgwM2FjODczYmVjNzU0ZjA3ZDc4NWIxNmFjN2I4NDc2MTY0YjM1NzAzOTBjYmRiYjVjM2JmMGMxYWUwZiIsInNjb3BlIjoiY29uZmlnIiwiaXNzIjoiaHR0cHM6Ly9hcGkuc3BlZWNobHkuY29tLyIsImF1ZCI6Imh0dHBzOi8vYXBpLnNwZWVjaGx5LmNvbS8ifQ.gC9aJo_qXUBC9fqg18Ff8pZVzNAjC5NahQqRxUpMiaY" placement="bottom"></push-to-talk-button> -->
+    <!-- <push-to-talk-button appid="a235763e-3892-4fa7-b752-b52b0b37671f" placement="bottom"></push-to-talk-button> -->
+    <error-panel placement="bottom"></error-panel>
+
+    <main>
+        <section>
+            <div class="group">
+                <label>Shipping</label>
+                <div class="inputContainer">
+                    <select id="shipping">
+                        <option>STANDARD</option>
+                        <option>EXPEDITED</option>
+                        <option>PRIORITY</option>
+                    </select>
+                </div>
+            </div>
+            <div class="group">
+                <label>Street Adress</label>
+                <div class="inputContainer">
+                    <input id="street_address" type="text" placeholder="" />
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document
+            .getElementsByTagName("push-to-talk-button")[0]
+            .addEventListener("speechsegment", (e) => {
+                e.detail.entities.forEach(entity => {
+                    document.getElementById(entity.type).value = entity.value;
+                })
+            });
+    </script>
+</body>
+
+</html>

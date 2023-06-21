@@ -1,0 +1,74 @@
+<div class="row text-center mb-0 mt-6">
+    <% if(page==='events'){%>
+    <a href='/eventCard?id=0&isDep=0<%=newEventParams%>' class="col-6 pe-0"> 
+        <div class="card card-style me-2 mb-3">
+            <i class="fa fa-arrow-up color-highlight fa-2x mt-3"></i>
+            <h1 class="pt-2 font-18">משיכה חדשה</h1>           
+        </div>
+    </a>
+    <a href='/eventCard?id=0&isDep=1<%=newEventParams%>' class="col-6 ps-0">
+        <div class="card card-style ms-2 mb-3">
+            <i class="fa fa-arrow-down color-green-dark fa-2x mt-3"></i>
+            <h1 class="pt-2 font-18">הפקדה חדשה</h1>
+        </div>
+    </a>
+    <%  } else if(page==='eventCard' && id !== 0) {%>
+        <a href='/eventCard?id=0&isDep=0<%=newEventParams%>' class="col-4 pe-0">
+            <div class="card card-style me-2 mb-3">
+                <i class="fa fa-arrow-up color-highlight fa-2x mt-3"></i>
+                <b class="pt-1 font-11">משיכה חדשה</b>           
+            </div>
+        </a>
+        <a href='/eventCard?id=0&isDep=1<%=newEventParams%>' class="col-4 ps-0 pe-0">
+            <div class="card card-style mb-3">
+                <i class="fa fa-arrow-down color-green-dark fa-2x mt-3"></i>
+                <b class="pt-1 font-11">הפקדה חדשה</b>
+            </div>
+        </a>
+        <a href='#' data-menu="menu-close" class="col-4 ps-0">
+            <div class="card card-style ms-2 mb-3">
+                <i class="fa fa-lock color-blue-dark fa-2x mt-3"></i>
+                <b class="pt-1 font-11">סגירת אירוע</b>
+            </div>
+        </a>
+    <%  } else if(page==='desks' || (page==='deskCard' && id !== 0)) {%>
+        <a href='/eventCard?id=0&isDep=0<%=newEventParams%>' class="col-4 pe-0">
+            <div class="card card-style me-2 mb-3">
+                <i class="fa fa-arrow-up color-highlight fa-2x mt-3"></i>
+                <b class="pt-1 font-11">משיכה חדשה</b>           
+            </div>
+        </a>
+        <a href='/eventCard?id=0&isDep=1<%=newEventParams%>' class="col-4 ps-0 pe-0">
+            <div class="card card-style mb-3">
+                <i class="fa fa-arrow-down color-green-dark fa-2x mt-3"></i>
+                <b class="pt-1 font-11">הפקדה חדשה</b>
+            </div>
+        </a>
+        <a href='/deskCard?id=0' class="col-4 ps-0">
+            <div class="card card-style ms-2 mb-3">
+                <i class="fa fa-shopping-bag color-blue-dark fa-2x mt-3"></i>
+                <b class="pt-1 font-11">קופה חדשה</b>
+            </div>
+        </a>
+
+    <%  } else if(page==='workers' || (page==='workerCard' && id !== 0)) {%>
+        <a href='/eventCard?id=0&isDep=0<%=newEventParams%>' class="col-4 pe-0">
+            <div class="card card-style me-2 mb-3">
+                <i class="fa fa-arrow-up color-highlight fa-2x mt-3"></i>
+                <b class="pt-1 font-11">משיכה חדשה</b>           
+            </div>
+        </a>
+        <a href='/eventCard?id=0&isDep=1<%=newEventParams%>' class="col-4 ps-0 pe-0">
+            <div class="card card-style mb-3">
+                <i class="fa fa-arrow-down color-green-dark fa-2x mt-3"></i>
+                <b class="pt-1 font-11">הפקדה חדשה</b>
+            </div>
+        </a>
+        <a href='/workerCard?id=0' class="col-4 ps-0">
+            <div class="card card-style ms-2 mb-3">
+                <i class="fa fa-user color-blue-dark fa-2x mt-3"></i>
+                <b class="pt-1 font-11">עובד חדש</b>
+            </div>
+        </a>
+    <%}%>
+</div>

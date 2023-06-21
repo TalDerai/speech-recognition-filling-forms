@@ -1,0 +1,1452 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "מערכת לניהול קופות",
+    "description": "temp for description",
+    "contact": {
+      "email": "alex@vir-tec.net"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://kupaktana.com/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "חשבון",
+      "description": "account tasks"
+    },
+    {
+      "name": "קופות",
+      "description": "list, create, update desks"
+    },
+    {
+      "name": "עובדים",
+      "description": "list, create, update workers"
+    },
+    {
+      "name": "אירועים",
+      "description": "list, create, update workers"
+    },
+    {
+      "name": "קבצים",
+      "description": "upload files for workers and events"
+    },
+    {
+      "name": "דוחות",
+      "description": "create reports"
+    }
+  ],
+  "paths": {
+    "/account/login": {
+      "post": {
+        "tags": [
+          "חשבון"
+        ],
+        "summary": "User login",
+        "operationId": "login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mail": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "mail",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/workers": {
+      "get": {
+        "tags": [
+          "עובדים"
+        ],
+        "summary": "Get list of workers",
+        "operationId": "listWorkers",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The numbers of items to return",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "The number of items to skip before starting to collect the result",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "arc - archive only, act - active only, NA - all items",
+            "schema": {
+              "type": "string",
+              "default": "all",
+              "enum": [
+                "all",
+                "arc",
+                "act"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "column name for sorting",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "description": "sort order: ASC - ascending, DESC - descending",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "search key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/workers/card": {
+      "get": {
+        "tags": [
+          "עובדים"
+        ],
+        "summary": "Open worker card",
+        "operationId": "cardWorker",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the worker",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/workers/arc": {
+      "put": {
+        "tags": [
+          "עובדים"
+        ],
+        "summary": "Move to/restore from archive",
+        "operationId": "arcWorker",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the worker",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "1 - move to archive, 0 - restore from archive",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/workers/create": {
+      "post": {
+        "tags": [
+          "עובדים"
+        ],
+        "summary": "Create a new worker",
+        "operationId": "createWorker",
+        "requestBody": {
+          "description": "Worker object that needs to be added",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewWorker"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/workers/update": {
+      "post": {
+        "tags": [
+          "עובדים"
+        ],
+        "summary": "Update worker",
+        "operationId": "updateWorker",
+        "requestBody": {
+          "description": "Worker object that needs to be updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Worker"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/workers/mailExists": {
+      "get": {
+        "tags": [
+          "עובדים"
+        ],
+        "summary": "Check if mail exists in database",
+        "operationId": "checkMail",
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "query",
+            "description": "mail to check",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/desks": {
+      "get": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Get list of desks",
+        "operationId": "listDesks",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The numbers of items to return",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "The number of items to skip before starting to collect the result set",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "arc - archive only, act - active only, NA - all items",
+            "schema": {
+              "type": "string",
+              "default": "all",
+              "enum": [
+                "all",
+                "opened",
+                "closed",
+                "deposit",
+                "withdrawal",
+                "arc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "column name for sorting",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "description": "sort order: ASC - ascending, DESC - descending",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "search key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/desks/card": {
+      "get": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Open worker card",
+        "operationId": "cardDesk",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the desk",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/desks/arc": {
+      "put": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Move to/restore from archive",
+        "operationId": "arcDesc",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the desk",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "1 - move to archive, 0 - restore from archive",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/desks/create": {
+      "post": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Create a new desk",
+        "operationId": "createDesk",
+        "requestBody": {
+          "description": "Desk object that needs to be added",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewDesk"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/desks/update": {
+      "post": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Update desk",
+        "operationId": "updateDesk",
+        "requestBody": {
+          "description": "Desk object that needs to be updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Desk"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/desks/balance": {
+      "get": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Get desk current balance",
+        "operationId": "getDeskBalance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the desk",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/desks/events": {
+      "get": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Get desk events amount",
+        "operationId": "getDeskEvents",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the desk",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/desks/workers": {
+      "get": {
+        "tags": [
+          "קופות"
+        ],
+        "summary": "Get desk workers",
+        "operationId": "getDeskWorkers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the desk",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Get list of events",
+        "operationId": "listEvents",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The numbers of items to return",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "The number of items to skip before starting to collect the result set",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "arc - archive only, act - active only, NA - all items",
+            "schema": {
+              "type": "string",
+              "default": "all",
+              "enum": [
+                "all",
+                "arc",
+                "act"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "column name for sorting",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "description": "sort order: ASC - ascending, DESC - descending",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "desk",
+            "in": "query",
+            "description": "filter by desk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "worker",
+            "in": "query",
+            "description": "filter by worker",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tp",
+            "in": "query",
+            "description": "filter by type",
+            "schema": {
+              "type": "string",
+              "default": "all",
+              "enum": [
+                "all",
+                "opened",
+                "closed",
+                "deposit"
+              ]
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "search key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events/card": {
+      "get": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Open event card",
+        "operationId": "cardEvent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the event",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events/arc": {
+      "put": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Move to/restore from archive",
+        "operationId": "arcEvent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the event",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "1 - move to archive, 0 - restore from archive",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events/arcFile": {
+      "put": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Move event document to archive",
+        "operationId": "arcEventFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the event",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "arc",
+            "in": "query",
+            "description": "1 - move to archive, 0 - restore from archive",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events/create": {
+      "post": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Create event",
+        "operationId": "createEvent",
+        "requestBody": {
+          "description": "Event object that needs to be added",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEvent"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/events/desksAndWorkers": {
+      "get": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Get desk and worker lists",
+        "operationId": "workersAndDesksForEvent",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events/files": {
+      "get": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Get event documents",
+        "operationId": "eventFiles",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the event",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/events/update": {
+      "post": {
+        "tags": [
+          "אירועים"
+        ],
+        "summary": "Update event",
+        "operationId": "updateEvent",
+        "requestBody": {
+          "description": "Event object that needs to be updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/file": {
+      "post": {
+        "tags": [
+          "קבצים"
+        ],
+        "summary": "file upload",
+        "description": "upload file and write its name in relative table",
+        "operationId": "uploadFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the event",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tp",
+            "in": "query",
+            "description": "event or worker for file relation",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "event",
+              "enum": [
+                "worker",
+                "event"
+              ]
+            }
+          },
+          {
+            "name": "ext",
+            "in": "query",
+            "description": "file extension (will be taken in JS before upload)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "png"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "description": "uploaded file",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/report": {
+      "get": {
+        "tags": [
+          "דוחות"
+        ],
+        "summary": "Create and display reports",
+        "operationId": "report",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "report type (0 - karteset kupa, 1 - maazan tnuot)",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "events filter (0 - all, 1 - closed, 2 - opened, 3 - deposits, 4 - withdrawals, 5 - archive)",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          },
+          {
+            "name": "worker",
+            "in": "query",
+            "description": "worker Id (0 - all)",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "desk",
+            "in": "query",
+            "description": "desk Id (0 - all)",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "start date in unix format",
+            "schema": {
+              "type": "number",
+              "example": 1345273532621
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "end date in unix format",
+            "schema": {
+              "type": "number",
+              "example": 1660803013220
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "0 - all data, 1 - records counter in the report",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "405": {
+            "description": "Server opeartion error",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Desk": {
+        "required": [
+          "Name",
+          "StartBalance"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "example": 1
+          },
+          "Name": {
+            "type": "string",
+            "example": "קופת הנהלה"
+          },
+          "Bank": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Branch": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Account": {
+            "type": "string",
+            "example": "001002003"
+          },
+          "AccountName": {
+            "type": "string",
+            "example": "משה כהן"
+          },
+          "StartDate": {
+            "type": "string",
+            "format": "date",
+            "example": "15/02/2022"
+          },
+          "StartBalance": {
+            "type": "number",
+            "format": "float",
+            "example": 450
+          },
+          "Comments": {
+            "type": "string",
+            "example": "קופה קטנה של משרד הנהלה"
+          },
+          "Archive": {
+            "type": "integer",
+            "example": 0
+          }
+        }
+      },
+      "NewDesk": {
+        "required": [
+          "Name",
+          "StartBalance"
+        ],
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "example": "קופת הנהלה"
+          },
+          "Bank": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Branch": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Account": {
+            "type": "string",
+            "example": "001002003"
+          },
+          "AccountName": {
+            "type": "string",
+            "example": "משה כהן"
+          },
+          "StartDate": {
+            "type": "string",
+            "format": "date",
+            "example": "15/02/2022"
+          },
+          "StartBalance": {
+            "type": "number",
+            "format": "float",
+            "example": 450
+          },
+          "Comments": {
+            "type": "string",
+            "example": "קופה קטנה של משרד הנהלה"
+          }
+        }
+      },
+      "Worker": {
+        "required": [
+          "FirstName",
+          "LastName",
+          "Mail",
+          "Password"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "example": 1
+          },
+          "FirstName": {
+            "type": "string",
+            "example": "משה"
+          },
+          "LastName": {
+            "type": "string",
+            "example": "כהן"
+          },
+          "Sn": {
+            "type": "string",
+            "example": "001002003"
+          },
+          "Phone": {
+            "type": "string",
+            "example": "050-5454545"
+          },
+          "Mail": {
+            "type": "string",
+            "example": "a@a.a"
+          },
+          "Password": {
+            "type": "string"
+          },
+          "Position": {
+            "type": "string",
+            "example": "מנהלת חשבונות"
+          },
+          "Permission": {
+            "type": "integer",
+            "description": "1 - guest, 2 - worker, 3 - manager, 4 - supervisor"
+          },
+          "Comments": {
+            "type": "string",
+            "example": "קופה קטנה של משרד הנהלה"
+          },
+          "Archive": {
+            "type": "integer",
+            "example": 0
+          }
+        }
+      },
+      "NewWorker": {
+        "required": [
+          "FirstName",
+          "LastName",
+          "Mail",
+          "Password"
+        ],
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string",
+            "example": "משה"
+          },
+          "LastName": {
+            "type": "string",
+            "example": "כהן"
+          },
+          "Sn": {
+            "type": "string",
+            "example": "001002003"
+          },
+          "Phone": {
+            "type": "string",
+            "example": "050-5454545"
+          },
+          "Mail": {
+            "type": "string",
+            "example": "a@a.a"
+          },
+          "Password": {
+            "type": "string"
+          },
+          "Position": {
+            "type": "string",
+            "example": "מנהלת חשבונות"
+          },
+          "Permission": {
+            "type": "integer",
+            "description": "1 - guest, 2 - worker, 3 - manager, 4 - supervisor"
+          },
+          "Comments": {
+            "type": "string",
+            "example": "קופה קטנה של משרד הנהלה"
+          }
+        }
+      },
+      "Event": {
+        "required": [
+          "Date"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "example": 1
+          },
+          "Date": {
+            "type": "string",
+            "format": "date"
+          },
+          "Amounnt": {
+            "type": "number",
+            "format": "float",
+            "example": 400
+          },
+          "Method": {
+            "type": "integer",
+            "description": "1 - bank transfer, 2 - check, 3 - other",
+            "example": 1
+          },
+          "Worker": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "Desk": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "CloseDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "CloseAmounnt": {
+            "type": "number",
+            "format": "float",
+            "example": 300
+          },
+          "Remainder": {
+            "type": "number",
+            "format": "float",
+            "example": 300
+          },
+          "Description": {
+            "type": "string"
+          },
+          "CloseDescription": {
+            "type": "string"
+          },
+          "CloseWorker": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "Comments": {
+            "type": "string"
+          },
+          "Archive": {
+            "type": "integer",
+            "example": 0
+          }
+        }
+      },
+      "NewEvent": {
+        "required": [
+          "Date"
+        ],
+        "type": "object",
+        "properties": {
+          "Date": {
+            "type": "string",
+            "format": "date"
+          },
+          "Amounnt": {
+            "type": "number",
+            "format": "float",
+            "example": 400
+          },
+          "Method": {
+            "type": "integer",
+            "description": "1 - bank transfer, 2 - check, 3 - other",
+            "example": 1
+          },
+          "Worker": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "Desk": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "CloseDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "CloseAmounnt": {
+            "type": "number",
+            "format": "float",
+            "example": 300
+          },
+          "Remainder": {
+            "type": "number",
+            "format": "float",
+            "example": 300
+          },
+          "Description": {
+            "type": "string"
+          },
+          "CloseDescription": {
+            "type": "string"
+          },
+          "CloseWorker": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "Comments": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

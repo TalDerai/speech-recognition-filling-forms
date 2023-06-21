@@ -1,0 +1,22 @@
+<div class="page-content header-clear-small mt-5 mb-3">
+    <% workers.forEach(w=>{ %>
+        <a href="/workerCard?id=<%= w.Id %>">
+            <div class="card card-style mb-3">
+                <div class="d-flex">
+                    <div class="ps-3 ms-2 align-self-center">
+                        <h4 class="pt-2 pb-1 font-20"><%= fullName(w) %></h1>
+                        <p class="font-12 opacity-75 mt-n1 mb-1 sub-title">
+                            <span>מס</span>:<b><%= w.Id %></b>   
+                            <span>הרשאות</span>:<b><%= workerCategory(w.Permission) %></b>
+                            <span>אירועים</span>:<b><%= w.Events ?? 0 %></b>
+                            <span>קופות</span>:<b><%= w.Desks ?? 0 %></b>                            
+                        </p>
+                    </div>                    
+                    <div class="ms-auto me-4 align-self-center">
+                        <i class="fa fa-angle-left"></i>                        
+                    </div>
+                </div>
+            </div>
+        </a>
+    <% }) %>
+</div>

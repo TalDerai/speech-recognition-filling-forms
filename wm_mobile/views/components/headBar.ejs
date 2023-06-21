@@ -1,0 +1,147 @@
+<div class="header header-fixed header-logo-center">
+    <span class="header-title">
+        <a href="/">
+            <h1 class="mt-2 color-blue-dark">
+                <%= title %>
+            </h1>
+        </a>
+    </span>
+    <a href="#" data-menu="menu-sidebar-right-1" class="header-icon header-icon-1 pt-1"><i
+            class="fa fa-bars font-20 mt-1"></i></a>
+    <% if(page !=='index' ){%>
+        <a href="/" class="header-icon header-icon-4 pt-1"><i class="fa fa-home font-16 mt-1 opacity-50"></i></a>
+        <%}%>
+</div>
+
+<!-- Sidebar 1 -->
+<div id="menu-sidebar-right-1" class="menu menu-box-right menu-box-detached menu-sidebar" data-menu-width="310">
+    <div class="sidebar-content notch-clear">
+        <div class="bg-theme mx-3 rounded-m shadow-m my-3">
+            <div class="d-flex px-2 pb-2 pt-2">
+                <div class="align-self-center">
+                    <a href="#"><img src="<%= user.Image %>" width="40" class="rounded-sm" alt="img"></a>
+                </div>
+                <div class="ps-2 align-self-center">
+                    <h5 class="ps-1 mb-1 pt-1 line-height-xs font-17">
+                        <%= user.Name %>
+                    </h5>
+                    <h6 class="ps-1 mb-0 font-400 opacity-40 font-12">
+                        <%= user.Position %>
+                    </h6>
+                </div>
+                <div class="ms-auto">
+                    <a href="#" class="icon tabs-large close-menu pe-2"><i
+                            class="fa fa-times color-theme font-18 opacity-50"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card card-style">
+            <div class="content my-0">
+                <h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">מאגר נתונים</h5>
+                <div class="list-group list-custom-small list-icon-0">
+                    <a href="/events">
+                        <i class="fa font-18 fa-shopping-bag color-brown-dark rounded-sm"></i>
+                        <span>רשימת אירועים</span>
+                        <span class="badge bg-highlight badge-small rounded-xl me-3">
+                            <%= user.Stat.opened %>
+                        </span>
+                        <span class="badge gradient-blue badge-small rounded-xl me-n1">
+                            <%= user.Stat.events %>
+                        </span>
+                    </a>
+                    <a href="/eventCard?id=0&isDep=0<%=newEventParams%>">
+                        <i class="fa font-18 fa-arrow-up color-highlight rounded-sm"></i>
+                        <span>משיכה חדשה</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="/eventCard?id=0&isDep=1<%=newEventParams%>">
+                        <i class="fa font-18 fa-arrow-down color-green-dark rounded-sm"></i>
+                        <span>הפקדה חדשה</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="/desks">
+                        <i class="fa font-18 fa-ils color-highlight rounded-sm color-white"></i>
+                        <span>רשימת קופות</span>
+                        <span class="badge gradient-blue badge-small rounded-xl me-n1">
+                            <%= user.Stat.desks %>
+                        </span>
+                    </a>
+                    <a href="/deskCard?id=0">
+                        <i class="fa font-18 fa-ils color-highlight rounded-sm"></i>
+                        <span class="d-inline position-absolute badge-plus mt-2 ps-1">
+                            <strong class="badge gradient-yellow color-white font-12 rounded-sm">+</strong>
+                        </span>
+                        <span class="font-14 ms-2">קופה חדשה</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="/workers">
+                        <i class="fa font-18 fa-user color-green-dark rounded-sm"></i>
+                        <span>רשימת עובדים</span>
+                        <span class="badge gradient-blue badge-small rounded-xl me-n1">
+                            <%= user.Stat.workers %>
+                        </span>
+                    </a>
+                    <a href="/workerCard?id=0">
+                        <i class="fa font-18 fa-user color-green-dark rounded-sm"></i>
+                        <span class="d-inline position-absolute badge-plus mt-2 ps-1">
+                            <strong class="badge gradient-yellow color-white font-12 rounded-sm">+</strong>
+                        </span>
+                        <span>עובד חדש</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-style">
+            <div class="content my-0">
+                <h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">כלי ניהול</h5>
+                <div class="list-group list-custom-small list-icon-0">
+                    <a href="#" data-menu="menu-search" onclick="$('#inpSearch').focus()">
+                        <i class="fa font-18 fa-search color-blue-dark"></i>
+                        <span>חיפוש</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="/reports">
+                        <i class="fa font-18 fa-print color-blue-dark"></i>
+                        <span>דוחות</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#" data-menu="menu-sound">
+                        <i class="font-18 fa fa-microphone color-blue-dark"></i>
+                        <span>עוזר קולי</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="/test" target="_blank">
+                        <i class="font-18 fa fa-microphone color-blue-dark"></i>
+                        <span class="d-inline position-absolute badge-plus mt-2 ps-1">
+                            <strong class="badge gradient-yellow color-white font-12 rounded-sm">?</strong>
+                        </span>
+                        <span>סימולטור קולי</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#" onclick="window.open('manual.pdf','_blank')">
+                        <i class="fa font-18 fa-book color-blue-dark"></i>
+                        <span class="d-inline position-absolute badge-plus mt-2 ps-1">
+                            <strong class="badge gradient-yellow color-white font-12 rounded-sm">?</strong>
+                        </span>
+                        <span>מדריך למשתמש</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-sticky w-100 bottom-0 end-0 pb-1">
+        <div class="card card-style mb-3">
+            <div class="content my-0 py-">
+                <div class="list-group list-custom-small list-icon-0">
+                    <a href="/logout">
+                        <span>יציאה מהמערכת</span>
+                        <i class="fa font-18 fa-sign-out fa-flip-horizontal color-theme"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

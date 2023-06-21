@@ -1,0 +1,16 @@
+<%- include ('components/head') %>
+<%- include ('components/preloader') %>
+<div id="page">
+    <%- include ('components/footBar') %>
+    <%- include ('components/headBar') %>  
+    <%- include ('components/searchListTitle') %>  
+    <% if(type==='events'){%>      
+        <%- include ('components/eventList') %> 
+    <% }else if(type==='desks'){%>      
+        <%- include ('components/deskList') %> 
+    <% }else if(type==='workers'){%>      
+        <%- include ('components/workerList') %> 
+    <% } %>
+</div>
+<%- include('voiceRecorder') %>
+<%- include('components/foot') %>
