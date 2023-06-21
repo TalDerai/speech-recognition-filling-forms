@@ -8,7 +8,7 @@ For login page:
 		node server.js
 		cd ../
 		
-	2. Open in browser: "localhost:3000" and sign in, after back to home and login
+	2. Open in browser: "localhost:3000" and sign up, after back to home and login
 	
 	3. In login page: generate an api-key and upload your commands.txt, and save the api-key in notes
 	
@@ -33,5 +33,5 @@ For website page:
 		npm run dev
 		cd ../
 
-	7. Open in browser: "localhost:7000" and sign in, and use in up right side setting and push "עוזר קולי", enjoy!
+	7. Open in browser: "localhost:7000" and login, and use in up right side setting and push "עוזר קולי", enjoy!
 	
