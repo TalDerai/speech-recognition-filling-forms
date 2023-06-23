@@ -22,7 +22,7 @@ Open a command prompt or terminal and navigate to the extracted directory.
 
 For login page:
 
-	0. We need to provide more 5 files that secret and can't in public mode in git, so contact us: misha717@gmail.com
+	0. We need to provide more 5 files that secret and can't be published in public mode, so contact us in order to get those.
 
 	1.  run commnands:
 	        cd new_page_login
@@ -36,7 +36,7 @@ For login page:
 	
 	4. Use the help button for see where need to provide the api-key
 
-For website page:
+For Customer (simulation) website page:
 
 	5. Open wm_mobile/index.js and insert the api-key in app.post('/stt', async (req, res)) function (in api_key variable)
 	
