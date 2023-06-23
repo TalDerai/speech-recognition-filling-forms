@@ -1,3 +1,11 @@
+In order to run the project you must have a google cloud Speech-to-Text API account.
+Because the json stt needs to be configured in the speakeasy project to use the google model.
+(The service is free for a limited time, then paid, so we removed our key which was configured).
+
+Extract the contents of the package to a directory of your choice.
+
+Open a command prompt or terminal and navigate to the extracted directory.
+
 For login page:
 
 	0. We need to provide more 5 files that secret and can't in public mode in git, so contact us: misha717@gmail.com
